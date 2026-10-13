@@ -1,5 +1,5 @@
 'use client';
-// page (app/page.jsx) · updated 13.10.2026 15:25 (Asia/Jerusalem)
+// page (app/page.jsx) · updated 13.10.2026 15:35 (Asia/Jerusalem)
 
 import React, { useState, useEffect } from 'react';
 import businessData from '../public/business_plan.json';
@@ -30,7 +30,7 @@ const TABS = [
               { id: 'gtm', label: 'תוכנית Go-To-Market', icon: Rocket, plan: true },
               { id: 'finance', label: 'מודל פיננסי', icon: Coins, plan: true },
               { id: 'infrared', label: 'מכשירי אינפרא אדום', icon: Sun, plan: true },
-              { id: 'simulator', label: 'סימולטור אימונים', icon: Dumbbell, highlight: true },
+              { id: 'simulator', label: 'סימולטור אימונים', icon: Dumbbell },
               { id: 'calculator', label: 'מחשבון ROI ושטח', icon: Calculator },
               { id: 'audience', label: 'קהל יעד ומסע לקוח', icon: Users },
               { id: 'contact', label: 'יבואן ויצירת קשר', icon: MapPin },
@@ -327,16 +327,11 @@ export default function SPlanBusinessPlanApp() {
                   className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all whitespace-nowrap ${
                     isActive
                       ? 'bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-300 border border-cyan-500/40 shadow-lg shadow-cyan-500/10'
-                      : tab.highlight
-                      ? 'text-cyan-400 hover:bg-cyan-500/10 border border-cyan-500/20'
                       : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
                   }`}
                 >
                   <Icon className={`w-4 h-4 ${isActive ? 'text-cyan-400' : 'text-slate-400'}`} />
                   {tab.label}
-                  {tab.highlight && !isActive && (
-                    <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-                  )}
                 </button>
               );
             })}
@@ -979,7 +974,7 @@ export default function SPlanBusinessPlanApp() {
         {activeTab === 'market' && <MarketTab p={planP} />}
         {activeTab === 'gtm' && <GtmTab p={planP} />}
         {activeTab === 'finance' && <FinanceTab key={planProduct} productId={planProduct} p={planP} />}
-        {activeTab === 'infrared' && <InfraredTab p={gtmData.products.infrared} request={gtmData.data_request} />}
+        {activeTab === 'infrared' && <InfraredTab p={gtmData.products.infrared} />}
 
       </main>
 

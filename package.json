@@ -1,6 +1,6 @@
 {
   "name": "splan-app",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -18,5 +18,5 @@
     "postcss": "8.4.47",
     "autoprefixer": "10.4.20"
   },
-  "buildNumber": 5
+  "buildNumber": 6
 }
