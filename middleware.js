@@ -1,11 +1,12 @@
-// middleware (middleware.js) · updated 13.10.2026 15:50 (Asia/Jerusalem)
+// middleware (middleware.js) · updated 13.10.2026 15:55 (Asia/Jerusalem)
 // Blocks every page and data file until the visitor logs in at /login
 import { NextResponse } from 'next/server';
 import { COOKIE, gateToken } from './lib/gate';
 
 export async function middleware(req) {
   const token = req.cookies.get(COOKIE)?.value;
-  if (token && token === (await gateToken())) return NextResponse.next();
+  const valid = await gateToken();
+  if (valid && token && token === valid) return NextResponse.next();
   const url = req.nextUrl.clone();
   url.pathname = '/login';
   url.search = '';

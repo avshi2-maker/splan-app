@@ -1,8 +1,9 @@
-// login API (app/api/login/route.js) · updated 13.10.2026 15:50 (Asia/Jerusalem)
+// login API (app/api/login/route.js) · updated 13.10.2026 15:55 (Asia/Jerusalem)
 import { NextResponse } from 'next/server';
-import { COOKIE, gateToken, checkCredentials } from '../../../lib/gate';
+import { COOKIE, gateToken, checkCredentials, gateConfigured } from '../../../lib/gate';
 
 export async function POST(req) {
+  if (!gateConfigured()) return NextResponse.json({ ok: false, error: 'not_configured' }, { status: 503 });
   let body = {};
   try { body = await req.json(); } catch (e) {}
   if (!checkCredentials(body.email, body.pass)) {

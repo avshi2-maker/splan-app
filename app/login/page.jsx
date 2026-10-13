@@ -1,5 +1,5 @@
 'use client';
-// login page (app/login/page.jsx) · updated 13.10.2026 15:50 (Asia/Jerusalem)
+// login page (app/login/page.jsx) · updated 13.10.2026 15:55 (Asia/Jerusalem)
 import React, { useState } from 'react';
 import { Lock, Mail, KeyRound, LogIn, Crown } from 'lucide-react';
 
@@ -16,7 +16,7 @@ export default function LoginPage() {
     try {
       const r = await fetch('/api/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, pass }) });
       if (r.ok) { window.location.href = '/'; return; }
-      setErr('אימייל או סיסמה שגויים');
+      setErr(r.status === 503 ? 'הכניסה אינה מוגדרת בשרת – פנה לאבשי' : 'אימייל או סיסמה שגויים');
     } catch (e2) {
       setErr('שגיאת תקשורת – נסה שוב');
     }
