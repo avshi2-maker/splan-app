@@ -1,11 +1,18 @@
 'use client';
-// page (app/page.jsx) · updated 13.10.2026 15:05 (Asia/Jerusalem)
+// page (app/page.jsx) · updated 13.10.2026 15:20 (Asia/Jerusalem)
 
 import React, { useState, useEffect } from 'react';
 import businessData from '../public/business_plan.json';
 import HeaderClock from './components/HeaderClock';
 import FeedbackWidget from './components/FeedbackWidget';
 import CopyrightFooter from './components/CopyrightFooter';
+import gtmData from '../public/gtm_plan.json';
+import ProductSwitch from './components/plan/ProductSwitch';
+import MarketTab from './components/plan/MarketTab';
+import GtmTab from './components/plan/GtmTab';
+import FinanceTab from './components/plan/FinanceTab';
+import InfraredTab from './components/plan/InfraredTab';
+import { Rocket, Coins, Sun, BarChart3 } from 'lucide-react';
 import { 
   Activity, Dumbbell, ShieldCheck, Zap, Maximize2, Layers, 
   Users, TrendingUp, Phone, Mail, MapPin, Globe, CheckCircle2, 
@@ -18,6 +25,10 @@ const TABS = [
               { id: 'summary', label: 'תמצית מנהלים', icon: Sparkles },
               { id: 'product', label: 'מוצר וטכנולוגיה', icon: Cpu },
               { id: 'problem_solution', label: 'אתגר ופתרון', icon: ShieldCheck },
+              { id: 'market', label: 'שוק ותחרות', icon: BarChart3, plan: true },
+              { id: 'gtm', label: 'תוכנית Go-To-Market', icon: Rocket, plan: true },
+              { id: 'finance', label: 'מודל פיננסי', icon: Coins, plan: true },
+              { id: 'infrared', label: 'מכשירי אינפרא אדום', icon: Sun, plan: true },
               { id: 'simulator', label: 'סימולטור אימונים', icon: Dumbbell, highlight: true },
               { id: 'calculator', label: 'מחשבון ROI ושטח', icon: Calculator },
               { id: 'audience', label: 'קהל יעד ומסע לקוח', icon: Users },
@@ -26,6 +37,8 @@ const TABS = [
 
 export default function SPlanBusinessPlanApp() {
   const [activeTab, setActiveTab] = useState('summary');
+  const [planProduct, setPlanProduct] = useState('mirror');
+  const planP = gtmData.products[planProduct];
   const [selectedMode, setSelectedMode] = useState(0);
 
   // ROI Calculator State
@@ -960,6 +973,14 @@ export default function SPlanBusinessPlanApp() {
             </div>
           </div>
         )}
+
+        {['market', 'gtm', 'finance'].includes(activeTab) && (
+          <ProductSwitch value={planProduct} onChange={setPlanProduct} status={planP.status} />
+        )}
+        {activeTab === 'market' && <MarketTab p={planP} />}
+        {activeTab === 'gtm' && <GtmTab p={planP} />}
+        {activeTab === 'finance' && <FinanceTab key={planProduct} productId={planProduct} p={planP} />}
+        {activeTab === 'infrared' && <InfraredTab p={gtmData.products.infrared} request={gtmData.data_request} />}
 
       </main>
 
