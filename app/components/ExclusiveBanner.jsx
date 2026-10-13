@@ -1,7 +1,7 @@
 'use client';
-// ExclusiveBanner (app/components/ExclusiveBanner.jsx) · updated 13.10.2026 15:25 (Asia/Jerusalem)
+// ExclusiveBanner (app/components/ExclusiveBanner.jsx) · updated 13.10.2026 15:50 (Asia/Jerusalem)
 import React, { useEffect, useState } from 'react';
-import { Crown, BookOpen, X } from 'lucide-react';
+import { Crown, BookOpen, X, LogOut } from 'lucide-react';
 
 const STEPS = [
   { t: 'ניווט', d: 'הלשוניות בראש העמוד מובילות לכל פרקי התוכנית: תמצית, מוצר, שוק ותחרות, Go-To-Market, מודל פיננסי, מכשירי אינפרא אדום, סימולטור ומחשבון ROI.' },
@@ -31,9 +31,14 @@ export default function ExclusiveBanner() {
           <p className="flex items-center gap-2 text-sm sm:text-base font-extrabold text-amber-300">
             <Crown className="w-5 h-5 shrink-0" /> תוכנית עסקית ירון ליבנה – בלעדי
           </p>
-          <button onClick={() => setOpen(true)} className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-black text-xs font-bold transition shrink-0">
-            <BookOpen className="w-4 h-4" /> מדריך שימוש
-          </button>
+          <div className="flex items-center gap-2 shrink-0">
+            <button onClick={() => setOpen(true)} className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-black text-xs font-bold transition">
+              <BookOpen className="w-4 h-4" /> מדריך שימוש
+            </button>
+            <a href="/api/logout" className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 text-xs font-bold transition" title="יציאה">
+              <LogOut className="w-4 h-4" /><span className="hidden sm:inline">יציאה</span>
+            </a>
+          </div>
         </div>
       </div>
 
