@@ -1,5 +1,5 @@
 'use client';
-// CopyrightFooter (app/components/CopyrightFooter.jsx) · updated 13.10.2026 15:40 (Asia/Jerusalem)
+// CopyrightFooter (app/components/CopyrightFooter.jsx) · updated 13.10.2026 15:25 (Asia/Jerusalem)
 import React, { useEffect } from 'react';
 import { ShieldAlert } from 'lucide-react';
 
@@ -25,7 +25,7 @@ export default function CopyrightFooter() {
   return (
     <footer className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
       <div className="border-t border-slate-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
-        <p className="font-semibold text-slate-300">© {year} ירון ליבנה – כל הזכויות שמורות <span className="text-slate-600 font-normal mr-2">v1.3.0</span></p>
+        <p className="font-semibold text-slate-300">© {year} ירון ליבנה – כל הזכויות שמורות <span className="text-slate-600 font-normal mr-2">v{process.env.NEXT_PUBLIC_APP_VERSION} · #{process.env.NEXT_PUBLIC_BUILD_NUMBER}</span></p>
         <p className="flex items-center gap-1.5 text-rose-400 font-bold">
           <ShieldAlert className="w-4 h-4" />
           אין להעתיק, לשכפל, להפיץ או לעשות כל שימוש בתוכן ללא אישור בכתב מירון ליבנה

@@ -1,11 +1,12 @@
 'use client';
-// page (app/page.jsx) · updated 13.10.2026 15:40 (Asia/Jerusalem)
+// page (app/page.jsx) · updated 13.10.2026 15:25 (Asia/Jerusalem)
 
 import React, { useState, useEffect } from 'react';
 import businessData from '../public/business_plan.json';
 import HeaderClock from './components/HeaderClock';
 import FeedbackWidget from './components/FeedbackWidget';
 import CopyrightFooter from './components/CopyrightFooter';
+import ExclusiveBanner from './components/ExclusiveBanner';
 import gtmData from '../public/gtm_plan.json';
 import ProductSwitch from './components/plan/ProductSwitch';
 import MarketTab from './components/plan/MarketTab';
@@ -310,10 +311,6 @@ export default function SPlanBusinessPlanApp() {
           <div className="flex items-center gap-3">
             <HeaderClock />
 
-            <a href={`tel:${contact.phone}`} className="hidden lg:flex items-center gap-1.5 text-xs text-slate-300 hover:text-cyan-400 transition bg-slate-900/80 px-3 py-1.5 rounded-xl border border-slate-800">
-              <Phone className="w-3.5 h-3.5 text-cyan-400" />
-              <span>{contact.phone}</span>
-            </a>
           </div>
         </div>
 
@@ -346,6 +343,8 @@ export default function SPlanBusinessPlanApp() {
           </nav>
         </div>
       </header>
+
+      <ExclusiveBanner />
 
       {/* Main Container */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
