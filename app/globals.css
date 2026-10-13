@@ -4,3 +4,7 @@
 
 html, body { background: #0A0E17; }
 body { font-family: 'Heebo', system-ui, -apple-system, sans-serif; }
+
+.glass-card { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(51, 65, 85, 0.6); }
+body { -webkit-user-select: none; user-select: none; }
+input, textarea { -webkit-user-select: text; user-select: text; }

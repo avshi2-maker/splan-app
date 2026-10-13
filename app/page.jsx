@@ -1,8 +1,11 @@
 'use client';
-// page (app/page.jsx) · updated 13.10.2026 14:42 (Asia/Jerusalem)
+// page (app/page.jsx) · updated 13.10.2026 15:05 (Asia/Jerusalem)
 
 import React, { useState, useEffect } from 'react';
 import businessData from '../public/business_plan.json';
+import HeaderClock from './components/HeaderClock';
+import FeedbackWidget from './components/FeedbackWidget';
+import CopyrightFooter from './components/CopyrightFooter';
 import { 
   Activity, Dumbbell, ShieldCheck, Zap, Maximize2, Layers, 
   Users, TrendingUp, Phone, Mail, MapPin, Globe, CheckCircle2, 
@@ -11,10 +14,19 @@ import {
   Send, MessageSquare, Bookmark, Trash2, Download, Save, FileText
 } from 'lucide-react';
 
+const TABS = [
+              { id: 'summary', label: 'תמצית מנהלים', icon: Sparkles },
+              { id: 'product', label: 'מוצר וטכנולוגיה', icon: Cpu },
+              { id: 'problem_solution', label: 'אתגר ופתרון', icon: ShieldCheck },
+              { id: 'simulator', label: 'סימולטור אימונים', icon: Dumbbell, highlight: true },
+              { id: 'calculator', label: 'מחשבון ROI ושטח', icon: Calculator },
+              { id: 'audience', label: 'קהל יעד ומסע לקוח', icon: Users },
+              { id: 'contact', label: 'יבואן ויצירת קשר', icon: MapPin },
+            ];
+
 export default function SPlanBusinessPlanApp() {
   const [activeTab, setActiveTab] = useState('summary');
   const [selectedMode, setSelectedMode] = useState(0);
-  const [copiedJson, setCopiedJson] = useState(false);
 
   // ROI Calculator State
   const [unitsCount, setUnitsCount] = useState(2);
@@ -153,11 +165,6 @@ export default function SPlanBusinessPlanApp() {
   const estCalories15Min = Math.round((currentMuscle.caloriesPerMin * (simWeight / 30)) * 15);
   const muscleActivationPct = Math.min(100, Math.round(70 + (simWeight / 100) * 22 + (simMode === 1 ? 8 : 0)));
 
-  const handleCopyJson = () => {
-    navigator.clipboard.writeText(JSON.stringify(businessData, null, 2));
-    setCopiedJson(true);
-    setTimeout(() => setCopiedJson(false), 2500);
-  };
 
   const handlePrintPDF = () => {
     const printWindow = window.open('', '_blank');
@@ -288,13 +295,7 @@ export default function SPlanBusinessPlanApp() {
           </div>
 
           <div className="flex items-center gap-3">
-            <button
-              onClick={handleCopyJson}
-              className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 border border-slate-700 transition"
-            >
-              {copiedJson ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5 text-cyan-400" />}
-              <span>{copiedJson ? 'הועתק!' : 'העתק JSON'}</span>
-            </button>
+            <HeaderClock />
 
             <a href={`tel:${contact.phone}`} className="hidden lg:flex items-center gap-1.5 text-xs text-slate-300 hover:text-cyan-400 transition bg-slate-900/80 px-3 py-1.5 rounded-xl border border-slate-800">
               <Phone className="w-3.5 h-3.5 text-cyan-400" />
@@ -306,15 +307,7 @@ export default function SPlanBusinessPlanApp() {
         {/* Navigation Tabs */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-auto">
           <nav className="flex space-x-1 space-x-reverse border-t border-slate-800/80 pt-2 pb-3">
-            {[
-              { id: 'summary', label: 'תמצית מנהלים', icon: Sparkles },
-              { id: 'product', label: 'מוצר וטכנולוגיה', icon: Cpu },
-              { id: 'problem_solution', label: 'אתגר ופתרון', icon: ShieldCheck },
-              { id: 'simulator', label: 'סימולטור אימונים', icon: Dumbbell, highlight: true },
-              { id: 'calculator', label: 'מחשבון ROI ושטח', icon: Calculator },
-              { id: 'audience', label: 'קהל יעד ומסע לקוח', icon: Users },
-              { id: 'contact', label: 'יבואן ויצירת קשר', icon: MapPin },
-            ].map((tab) => {
+            {TABS.map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
               return (
@@ -969,6 +962,9 @@ export default function SPlanBusinessPlanApp() {
         )}
 
       </main>
+
+      <CopyrightFooter />
+      <FeedbackWidget pageLabel={(TABS.find((t) => t.id === activeTab) || TABS[0]).label} />
     </div>
   );
 }
