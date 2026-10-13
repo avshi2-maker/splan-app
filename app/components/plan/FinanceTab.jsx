@@ -1,5 +1,5 @@
 'use client';
-// FinanceTab (app/components/plan/FinanceTab.jsx) · updated 13.10.2026 15:20 (Asia/Jerusalem)
+// FinanceTab (app/components/plan/FinanceTab.jsx) · updated 13.10.2026 15:40 (Asia/Jerusalem)
 import React, { useEffect, useState } from 'react';
 import { Coins, RotateCcw, Printer } from 'lucide-react';
 import { Ph, SectionHead, shekel } from './Placeholder';
@@ -56,6 +56,8 @@ export default function FinanceTab({ productId, p }) {
           <button onClick={reset} className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-800 border border-slate-700 text-xs text-slate-200"><RotateCcw className="w-4 h-4" />איפוס</button>
         </div>
       </div>
+
+      {p.finance.price_hint && <p className="text-xs text-amber-300 bg-amber-500/10 border border-amber-500/30 rounded-xl px-4 py-2">{p.finance.price_hint}</p>}
 
       <div className="grid sm:grid-cols-3 gap-4">
         <label className="bg-slate-900/70 border border-slate-800 rounded-xl p-4 text-xs text-slate-400 space-y-2"><span>מחיר מכירה ליחידה (₪)</span>{inp(d.price, (v) => setTop('price', v))}</label>

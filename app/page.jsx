@@ -1,5 +1,5 @@
 'use client';
-// page (app/page.jsx) · updated 13.10.2026 15:20 (Asia/Jerusalem)
+// page (app/page.jsx) · updated 13.10.2026 15:40 (Asia/Jerusalem)
 
 import React, { useState, useEffect } from 'react';
 import businessData from '../public/business_plan.json';

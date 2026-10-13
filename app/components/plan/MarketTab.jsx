@@ -1,7 +1,7 @@
 'use client';
-// MarketTab (app/components/plan/MarketTab.jsx) · updated 13.10.2026 15:20 (Asia/Jerusalem)
+// MarketTab (app/components/plan/MarketTab.jsx) · updated 13.10.2026 15:40 (Asia/Jerusalem)
 import React from 'react';
-import { TrendingUp, Target, Swords, Star } from 'lucide-react';
+import { TrendingUp, Target, Swords, Star, Users } from 'lucide-react';
 import { Ph, SectionHead, EmptyList } from './Placeholder';
 
 export default function MarketTab({ p }) {
@@ -30,6 +30,15 @@ export default function MarketTab({ p }) {
           </ul>
         ) : <EmptyList />}
       </div>
+
+      {m.segments && (
+        <div>
+          <h3 className="text-lg font-bold text-white flex items-center gap-2 mb-3"><Users className="w-5 h-5 text-cyan-400" />קהלי יעד עסקיים</h3>
+          <div className="flex flex-wrap gap-2">
+            {m.segments.map((sg) => <span key={sg} className="text-sm bg-slate-900/70 border border-slate-800 text-slate-200 px-3 py-1.5 rounded-xl">{sg}</span>)}
+          </div>
+        </div>
+      )}
 
       <div>
         <h3 className="text-lg font-bold text-white flex items-center gap-2 mb-3"><Swords className="w-5 h-5 text-cyan-400" />מתחרים</h3>
